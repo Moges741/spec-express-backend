@@ -1,6 +1,6 @@
 let users = [];
 let idIncrementor = 0;
-const createUser = (req, res, next) => {
+const createUser = (req, res) => {
     try {
         const {name} = req.body;
         if(!name) {
@@ -13,22 +13,25 @@ const createUser = (req, res, next) => {
         users.push(newUser);
         res.status(201).json(newUser);
     } catch (error) {
-        next(error)
+       res.json({message : error.message})
         
     }
 }
-const getUsers = (req, res, next) => {
+const getUsers = (req, res) => {
     try {
         res.json(users);   
     } catch (error) {
-        next(error)   
+       res.json({message : error.message})
     }
 }
-const getUserById = (req, res, next) => {
+const getUserById = (req, res) => {
     try {
-
-        
+        const user= users.find(u => u.id === Number(req.params.id));
+        if(!user){
+            res.status(404).json({message: "User not found"});
+        }
+        res.json(user) 
     } catch (error) {
-        
+    res.json({message : error.message})
     }
 }
