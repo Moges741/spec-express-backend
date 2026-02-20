@@ -1,5 +1,3 @@
-import { json } from "express";
-
 let users = [];
 let idIncrementor = 0;
 const createUser = (req, res) => {
@@ -67,3 +65,4 @@ const deleteUser = (req, res) => {
         
     }
 }
+export default {createUser, getUserById, getUsers, deleteUser, updateUser};
