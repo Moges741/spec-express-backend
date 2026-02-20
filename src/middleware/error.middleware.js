@@ -3,3 +3,4 @@ const errorHandler = (err, req, res, next) => {
         err : err.message
     })
 } 
+export default errorHandler;
