@@ -35,3 +35,30 @@ const getUserById = (req, res) => {
     res.json({message : error.message})
     }
 }
+const updateUser = (req, res) =>{
+    try {
+        const user = users.find(u => u.id === Number(req.params.id));
+        if(!user){
+            res.json({message : 'User not found'})
+        }
+    user.name = req.body.name || user.name;
+    res.json(user)
+
+    } catch (error) {
+    res.json({message : error.message})
+
+    }
+}
+
+const deleteUser = (req, res) => {
+    try {
+        const index = users.findIndex(u => u.id === Number(req.params.id));
+        if(index === -1){
+            res.json({message : 'User not found'})
+        }
+    
+        
+    } catch (error) {
+        
+    }
+}
