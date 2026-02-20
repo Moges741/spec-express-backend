@@ -2,13 +2,14 @@ let users = [];
 let idIncrementor = 0;
 const createUser = (req, res) => {
     try {
-        const {name} = req.body;
+        const {name, dep} = req.body;
         if(!name) {
             res.status(404).json({message : "Name is Required"});
         }
         const newUser = {
             id : idIncrementor++,
-            name
+            name,
+            dep
         }
         users.push(newUser);
         res.status(201).json(newUser);
@@ -65,4 +66,4 @@ const deleteUser = (req, res) => {
         
     }
 }
-export default {createUser, getUserById, getUsers, deleteUser, updateUser};
+export  {createUser, getUserById, getUsers, deleteUser, updateUser};
